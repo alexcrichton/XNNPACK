@@ -9,7 +9,7 @@
 
 #include <assert.h>
 
-#include <arm_neon.h>
+#include <wasm_simd128.h>
 
 #include <xnnpack/common.h>
 #include <xnnpack/intrinsics-polyfill.h>
