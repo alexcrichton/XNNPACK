@@ -1,0 +1,13 @@
+diff --git googletest/include/gtest/internal/gtest-port.h googletest/include/gtest/internal/gtest-port.h
+index 3556fdb9..27212f74 100644
+--- googletest/include/gtest/internal/gtest-port.h
++++ googletest/include/gtest/internal/gtest-port.h
+@@ -583,7 +583,7 @@ typedef struct _RTL_CRITICAL_SECTION GTEST_CRITICAL_SECTION;
+ // platforms except known mobile / embedded ones.
+ #if GTEST_OS_WINDOWS_MOBILE || GTEST_OS_WINDOWS_PHONE ||          \
+     GTEST_OS_WINDOWS_RT || GTEST_OS_ESP8266 || GTEST_OS_XTENSA || \
+-    GTEST_OS_QURT
++    GTEST_OS_QURT || defined(__wasi__)
+ #define GTEST_HAS_STREAM_REDIRECTION 0
+ #else
+ #define GTEST_HAS_STREAM_REDIRECTION 1

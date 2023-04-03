@@ -1,0 +1,40 @@
+diff --git src/cycleclock.h src/cycleclock.h
+index df6ffa5..dd87ffa 100644
+--- src/cycleclock.h
++++ src/cycleclock.h
+@@ -122,7 +122,7 @@ inline BENCHMARK_ALWAYS_INLINE int64_t Now() {
+   return virtual_timer_value;
+ #elif defined(COMPILER_MSVC)
+   return __rdtsc();
+-#elif defined(BENCHMARK_OS_NACL)
++#elif defined(BENCHMARK_OS_NACL) || defined(__wasi__)
+   // Native Client validator on x86/x86-64 allows RDTSC instructions,
+   // and this case is handled above. Native Client validator on ARM
+   // rejects MRC instructions (used in the ARM-specific sequence below),
+diff --git a/src/sysinfo.cc b/src/sysinfo.cc
+index 41f2d36..e166806 100644
+--- src/sysinfo.cc
++++ src/sysinfo.cc
+@@ -445,6 +445,9 @@ std::string GetSystemName() {
+     str += std::to_string(arch_version_struct.arch_version);
+   }
+   return str;
++#elif defined(__wasi__)
++  std::string str = "WASI";
++  return str;
+ #else
+ #ifndef HOST_NAME_MAX
+ #ifdef BENCHMARK_HAS_SYSCTL  // BSD/Mac Doesnt have HOST_NAME_MAX defined
+diff --git a/src/timers.cc b/src/timers.cc
+index 379d97d..d6f10b4 100644
+--- src/timers.cc
++++ src/timers.cc
+@@ -172,7 +172,7 @@ double ThreadCPUUsage() {
+     return MakeTime(info);
+   }
+   DiagnoseAndExit("ThreadCPUUsage() failed when evaluating thread_info");
+-#elif defined(BENCHMARK_OS_EMSCRIPTEN)
++#elif defined(BENCHMARK_OS_EMSCRIPTEN) || defined(__wasi__)
+   // Emscripten doesn't support traditional threads
+   return ProcessCPUUsage();
+ #elif defined(BENCHMARK_OS_RTEMS)

@@ -25,6 +25,7 @@ http_archive(
     sha256 = "5cb522f1427558c6df572d6d0e1bf0fd076428633d080e88ad5312be0b6a8859",
     strip_prefix = "googletest-e23cdb78e9fef1f69a9ef917f447add5638daf2a",
     urls = ["https://github.com/google/googletest/archive/e23cdb78e9fef1f69a9ef917f447add5638daf2a.zip"],
+    patches = ["@//toolchain:gtest.patch"],
 )
 
 # Google Benchmark library, used in micro-benchmarks.
@@ -33,6 +34,7 @@ http_archive(
     sha256 = "1ba14374fddcd9623f126b1a60945e4deac4cdc4fb25a5f25e7f779e36f2db52",
     strip_prefix = "benchmark-d2a8a4ee41b923876c034afb939c4fc03598e622",
     urls = ["https://github.com/google/benchmark/archive/d2a8a4ee41b923876c034afb939c4fc03598e622.zip"],
+    patches = ["@//toolchain:google-benchmark-wasi.patch"],
 )
 
 # FP16 library, used for half-precision conversions
@@ -70,6 +72,7 @@ http_archive(
     urls = [
         "https://github.com/pytorch/cpuinfo/archive/3dc310302210c1891ffcfb12ae67b11a3ad3a150.zip",
     ],
+    patches = ["@//toolchain:cpuinfo.patch"],
 )
 
 # Ruy library, used to benchmark against
@@ -83,7 +86,7 @@ http_archive(
 )
 
 # Android NDK location and version is auto-detected from $ANDROID_NDK_HOME environment variable
-android_ndk_repository(name = "androidndk")
+#android_ndk_repository(name = "androidndk")
 
 # Android SDK location and API is auto-detected from $ANDROID_HOME environment variable
-android_sdk_repository(name = "androidsdk")
+#android_sdk_repository(name = "androidsdk")

@@ -1,0 +1,26 @@
+diff --git src/emscripten/init.c src/emscripten/init.c
+index ce4bdea..f3eaba1 100644
+--- src/emscripten/init.c
++++ src/emscripten/init.c
+@@ -4,7 +4,9 @@
+ #include <string.h>
+ #include <math.h>
+
++#ifndef __wasi__
+ #include <emscripten/threading.h>
++#endif
+
+ #include <cpuinfo.h>
+ #include <cpuinfo/internal-api.h>
+@@ -33,7 +35,11 @@ void cpuinfo_emscripten_init(void) {
+
+ 	const bool is_x86 = signbit(infinity - infinity);
+
++#ifdef __wasi__
++	int logical_cores_count = 1;
++#else
+ 	int logical_cores_count = emscripten_num_logical_cores();
++#endif
+ 	if (logical_cores_count <= 0) {
+ 		logical_cores_count = 1;
+ 	}

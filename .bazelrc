@@ -55,3 +55,7 @@ build:macos --apple_platform_type=macos
 
 build:macos_arm64 --config=macos
 build:macos_arm64 --cpu=darwin_arm64
+
+build:wasi --crosstool_top=//toolchain:wasi
+build:wasi --cpu=wasm
+build:wasi --host_crosstool_top=@bazel_tools//tools/cpp:toolchain
