@@ -57,7 +57,7 @@ class Generator : public MacroAssembler {
 // unused A   v8 v9 v10 v11
 // unused B   v12 v13 v14 v15
 
-// Converted from: src/f32-gemm/gen/f32-gemm-6x8-minmax-asm-aarch64-neonfma-ld128.S
+// Converted from: -gemm-6x8-minmax-asm-aarch64-neonfma-ld128.S
 void Generator::generate(size_t max_mr, size_t nc_mod_nr, size_t kc, const jit_gemm_params* jit_gemm_params)
 {
   assert(max_mr <= 6);
