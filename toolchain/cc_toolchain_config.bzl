@@ -70,7 +70,6 @@ def _impl(ctx):
                                 "-pthread",
                                 "-matomics",
                                 "-mbulk-memory",
-                                "-g",
                                 "-O3",
                                 "-DNDEBUG",
                             ]
